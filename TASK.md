@@ -1,0 +1,1 @@
+react-router-dom redux redux-thunk react-redux react-bootstrap bootstrap@5.1.3
