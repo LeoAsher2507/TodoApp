@@ -1,21 +1,16 @@
 import React, { useState } from 'react';
-import { Form, Button } from 'react-bootstrap';
+import { Form, Button, Card } from 'react-bootstrap';
 import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { routeList } from '../../../../navigations/routes';
 import { setLocalStorage } from '../../../../services/localStorage';
+import AuthFormWrap from '../../components/AuthFormWrap';
 import { loginMethod } from '../../services/authThunk';
-
-import './Login.css';
+ 
 
 const LoginPage = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-
-  const handleLogin = () => {
-    setLocalStorage('token', 'Ahihi');
-    
-  };
 
   const handleSubmit = () => {
     const data = {
@@ -32,31 +27,42 @@ const LoginPage = () => {
 
   return (
     <div className='login-page'>
-      <Form>
-        <Form.Group className='mb-3' controlId='username'>
-          <Form.Label>Username</Form.Label>
-          <Form.Control
-            type='username'
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-            placeholder='Enter username'
-          />
-        </Form.Group>
+      <AuthFormWrap title="Login" >
+        <Form>
+          <Form.Group className='mb-3' controlId='username'>
+            <Form.Label>Username</Form.Label>
+            <Form.Control
+              type='username'
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+              placeholder='Enter username'
+            />
+          </Form.Group>
 
-        <Form.Group className='mb-3' controlId='password'>
-          <Form.Label>Password</Form.Label>
-          <Form.Control
-            type='password'
-            value={password}
-            placeholder='Password'
-            onChange={(e) => setPassword(e.target.value)}
-          />
-        </Form.Group>
+          <Form.Group className='mb-3' controlId='password'>
+            <Form.Label>Password</Form.Label>
+            <Form.Control
+              type='password'
+              value={password}
+              placeholder='Password'
+              onChange={(e) => setPassword(e.target.value)}
+            />
+          </Form.Group>
 
-        <Button variant='primary' onClick={() => handleSubmit()}>
-          Submit
-        </Button>
-      </Form>
+          <div>
+            <Link to={routeList.REGISTER} className='link-to-register'>
+              Đăng ký
+            </Link>
+          </div>
+
+          <Button
+            className='btn'
+            variant='primary'
+            onClick={() => handleSubmit()}>
+            Submit
+          </Button>
+        </Form>
+      </AuthFormWrap>
     </div>
   );
 };

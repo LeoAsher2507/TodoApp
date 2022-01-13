@@ -1,5 +1,6 @@
 import axios from 'axios';
 import queryString from 'query-string'
+import { getLocalStorage } from '../localStorage';
 
 export const axiosInstance = axios.create({
   withCredentials: false,
@@ -11,6 +12,9 @@ export const axiosInstance = axios.create({
   paramsSerializer: (params) => queryString.stringify(params)
 })
 
-// axiosInstance.interceptors.request.use(request => {
-  
-// }) 
+// axiosInstance.interceptors.request.use((request) => {
+//   const accessToken = getLocalStorage("token");
+//   const accessHeader = `Bearer ${accessToken}`;
+//   if (request.headers) request.headers['Authorization'] = accessHeader;
+//   return request;
+// });

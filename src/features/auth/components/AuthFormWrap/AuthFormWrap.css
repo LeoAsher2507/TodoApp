@@ -1,0 +1,17 @@
+.auth-form-wrap {
+  width: 400px;
+  margin: 50px auto 50px auto;
+}
+
+.auth-form-wrap .title {
+  font-size: 30px;
+  font-weight: 700;
+  text-transform: uppercase;
+  text-align: center;
+  margin: 20px auto 24px;
+}
+
+.btn { 
+  float: right;
+  margin-bottom: 20px;
+}
