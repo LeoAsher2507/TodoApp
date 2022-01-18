@@ -1,7 +1,5 @@
 export const getAccessToken = () => {
-  return localStorage.getItem('token')
-    ? JSON.parse(localStorage.getItem('token'))
-    : '{}';
+  return localStorage.getItem('token');
 };
 
 export const setAccessToken = (token) => {

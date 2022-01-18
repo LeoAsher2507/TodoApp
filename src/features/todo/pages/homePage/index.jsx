@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { routeList } from '../../../../navigations/routes';
+import { routeList } from '../../../../navigation/routes';
 import { removeAccessToken } from '../../../../services/localStorage';
 
 const HomePage = () => {

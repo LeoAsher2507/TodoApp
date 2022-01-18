@@ -12,9 +12,9 @@ export const axiosInstance = axios.create({
   paramsSerializer: (params) => queryString.stringify(params),
 });
 
-axiosInstance.interceptors.request.use((request) => {
-  const accessToken = getAccessToken();
-  const accessHeader = `Bearer ${accessToken}`;
-  if (request.headers) request.headers['Authorization'] = accessHeader;
-  return request;
-});
+// axiosInstance.interceptors.request.use((request) => {
+//   const accessToken = getAccessToken();
+//   const accessHeader = `Bearer ${accessToken}`;
+//   if (request.headers) request.headers['Authorization'] = accessHeader;
+//   return request;
+// });
