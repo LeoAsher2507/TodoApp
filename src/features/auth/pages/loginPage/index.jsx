@@ -1,25 +1,25 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Form } from 'react-bootstrap';
 import { useDispatch } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import { routeList } from '../../../../navigation/routes';
+import { getLocalStorage } from '../../../../services/localStorage';
 import AuthFormWrap from '../../components/AuthFormWrap';
 import { loginMethod } from '../../services/authThunk';
 
-const LoginPage = () => {
-  const navigate = useNavigate();
+const LoginPage = () => { 
   const dispatch = useDispatch();
+  const navigate = useNavigate()
 
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+  const [username, setUsername] = useState('test');
+  const [password, setPassword] = useState('test1234');
 
   const handleLogIn = (e) => {
     const data = {
       username,
       password,
     };
-    dispatch(loginMethod(data));
-    navigate('/');
+    dispatch(loginMethod(data)); 
   };
 
   const handleUserOnChange = (e) => {
@@ -29,6 +29,13 @@ const LoginPage = () => {
   const handlePasswordOnChange = (e) => {
     setPassword(e.target.value);
   };
+  const currentId = getLocalStorage('currentId')
+
+  useEffect(() => {
+    if(currentId) {
+      navigate('/')
+    }
+  }, [currentId, navigate])
 
   return (
     <div className='login-page'>

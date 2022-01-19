@@ -1,6 +1,5 @@
 import axios from 'axios';
-import queryString from 'query-string';
-import { getAccessToken } from '../localStorage';
+import queryString from 'query-string'; 
 
 export const axiosInstance = axios.create({
   withCredentials: false,
@@ -10,7 +9,7 @@ export const axiosInstance = axios.create({
     'Content-Type': 'application/json',
   },
   paramsSerializer: (params) => queryString.stringify(params),
-});
+}); 
 
 // axiosInstance.interceptors.request.use((request) => {
 //   const accessToken = getAccessToken();

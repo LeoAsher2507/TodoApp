@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { setAccessToken } from '../../../services/localStorage';
+import {   setLocalStorage } from '../../../services/localStorage';
 import { loginMethod, registerMethod } from './authThunk';
 
 const initialState = {
@@ -14,9 +14,9 @@ export const authSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(loginMethod.fulfilled, (state, action) => {
-        console.log('Login successfully!');
-        state.currentId = action.payload.id;
-        setAccessToken(action.payload.id);
+        console.log('Login successfully!', action.payload.id);
+        state.currentId = action.payload.id; 
+        setLocalStorage('currentId', state.currentId);
       })
       .addCase(loginMethod.rejected, (state, action) => {
         console.log('reject');
