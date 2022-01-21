@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { addTodoMethod, editTodoMethod } from './todoThunk';
+import { addTodoMethod, deleteTodoMethod, editTodoMethod } from './todoThunk';
 
 const initialState = {
   todoList: [
@@ -38,8 +38,12 @@ const todoSlice = createSlice({
         const index = state.todoList.findIndex(
           (todo) => todo.id === action.payload.id
         );
-        console.log('vo slice edit', action.payload, index);
         state.todoList[index] = action.payload;
+      })
+      .addCase(deleteTodoMethod.fulfilled, (state, action) => {
+        state.todoList = state.todoList.filter(
+          (todo) => todo.id !== action.payload
+        );
       });
   },
 });

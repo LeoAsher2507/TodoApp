@@ -20,7 +20,21 @@ export const editTodoMethod = createAsyncThunk(
   async (data) => {
     //data => newTodo
     try {
-      // const response = await todoApiMethod.addTodo(data); /// goi toi api
+      // const response = await todoApiMethod.editTodo(data); /// goi toi api
+      // console.log('response add ', response);
+      return data;
+    } catch (error) {
+      return error;
+    }
+  }
+);
+
+export const deleteTodoMethod = createAsyncThunk(
+  'todo/deleteTodoMethod',
+  async (data) => {
+    //data => newTodo
+    try {
+      // const response = await todoApiMethod.deleteTodo(data); /// goi toi api
       // console.log('response add ', response);
       return data;
     } catch (error) {
