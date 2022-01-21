@@ -24,8 +24,7 @@ function App() {
             <Route path={routeList.MY_PROFILE} element={<UserProfilePage />}></Route>
           </Route>
           <Route path={routeList.LOGIN} element={<LoginPage />} />
-          <Route path={routeList.REGISTER} element={<RegisterPage />} />
-          <Route path={routeList.LOGIN} element={<h1>Login Page</h1>} />
+          <Route path={routeList.REGISTER} element={<RegisterPage />} /> 
         </Routes>
       </BrowserRouter>
     </div>

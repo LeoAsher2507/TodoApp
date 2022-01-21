@@ -1,21 +1,30 @@
 import { createSlice } from '@reduxjs/toolkit';
-import {   setLocalStorage } from '../../../services/localStorage';
+import {
+  getLocalStorage,
+  removeLocalStorage,
+  setLocalStorage,
+} from '../../../services/localStorage';
 import { loginMethod, registerMethod } from './authThunk';
 
 const initialState = {
   token: '',
-  currentId: '',
+  currentId: getLocalStorage('currentId'),
 };
 
 export const authSlice = createSlice({
   name: 'auth',
   initialState,
-  reducers: {},
+  reducers: {
+    logoutMethod: (state) => {
+      state.currentId = '';
+      removeLocalStorage('currentId');
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(loginMethod.fulfilled, (state, action) => {
         console.log('Login successfully!', action.payload.id);
-        state.currentId = action.payload.id; 
+        state.currentId = action.payload.id;
         setLocalStorage('currentId', state.currentId);
       })
       .addCase(loginMethod.rejected, (state, action) => {
@@ -31,4 +40,5 @@ export const authSlice = createSlice({
   },
 });
 
+export const { logoutMethod } = authSlice.actions;
 export const authReducer = authSlice.reducer;

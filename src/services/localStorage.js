@@ -1,5 +1,5 @@
 export const getLocalStorage = (key) => {
-  return localStorage.getItem(key);
+  return localStorage.getItem(key) ? localStorage.getItem(key) : '';
 };
 
 export const setLocalStorage = (key, value) => {

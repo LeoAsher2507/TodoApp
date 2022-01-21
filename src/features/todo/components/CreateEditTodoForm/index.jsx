@@ -2,18 +2,17 @@ import React from 'react';
 import { Form } from 'react-bootstrap';
 
 const CreateEditTodoForm = (props) => {
-    const { todo} = props;
-
-    console.log("test form" ,todo);
-    const handleInputNameChange = (e) => {
-        console.log("event", e);
+    const { todoName, setTodoName } = props;
+ 
+    const handleInputNameChange = (e) => { 
+        setTodoName(e.target.value) // e.target = HTMLNode <input>
     }
 
     return <div> 
         <Form>
             <Form.Group>
                 <Form.Label>Todo name:</Form.Label>
-                <Form.Control placeholder='Enter name' onChange={(e) => handleInputNameChange(e)} value={todo ? todo.name : ""} />
+                <Form.Control placeholder='Enter name' onChange={(e) => handleInputNameChange(e)} value={todoName} />
             </Form.Group>
         </Form>
     </div>;
