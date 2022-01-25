@@ -22,3 +22,14 @@ export const registerMethod = createAsyncThunk(
     } catch (err) {}
   }
 );
+
+export const getUserInfoMethod = createAsyncThunk(
+  `auth/getUserInfoMethod`,
+  async (id) => {
+    try{
+      const response = await AuthApiMethod.getUserInfo(id);
+      console.log('userInfo', response);
+      return response.data;
+    } catch(err) {}
+  }
+);
