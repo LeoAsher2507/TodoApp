@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { routeList } from '../../../../navigation/routes';
 import { logoutMethod } from '../../../auth/services/authSlice';
+import { getUserInfoMethod } from '../../../auth/services/authThunk';
 import { deleteTodoMethod, getAllTodoMethod } from '../../services/todoThunk';
 import './HomePage.css';
 
@@ -43,9 +44,12 @@ const HomePage = () => {
   };
 
   const handleIsDoneChange = (e) => {};
+  const {userId, userInfo} = useSelector((state) => state.auth);
+  console.log('userInfo1',userInfo);
 
   useEffect(() => {
     dispatch(getAllTodoMethod());
+    dispatch(getUserInfoMethod(userId));
   }, [dispatch]);
 
   return (

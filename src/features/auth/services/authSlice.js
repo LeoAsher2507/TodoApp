@@ -4,11 +4,22 @@ import {
   removeLocalStorage,
   setLocalStorage,
 } from '../../../services/localStorage';
-import { loginMethod, registerMethod } from './authThunk';
+import { getUserInfoMethod, loginMethod, registerMethod } from './authThunk';
 
 const initialState = {
-  userId: getLocalStorage('userID'),
+  userId: getLocalStorage('userId'),
   currentId: getLocalStorage('currentId'),
+  userInfo: {
+    createdAt: "",
+    email: "",
+    emailVerified: null,
+    id: 0,
+    isAdmin: 0,
+    name: "",
+    realm: null,
+    updatedAt: "",
+    username: ""
+  }
 };
 
 const authSlice = createSlice({
@@ -39,7 +50,11 @@ const authSlice = createSlice({
       })
       .addCase(registerMethod.rejected, (state, action) => {
         console.log('reject1');
-      });
+      })
+      .addCase(getUserInfoMethod.fulfilled, (state, action) => {
+        state.userInfo = {...action.payload}
+        // console.log(action.payload)
+      })
   },
 });
 
