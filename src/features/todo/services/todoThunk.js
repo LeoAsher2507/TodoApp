@@ -3,42 +3,48 @@ import { todoApiMethod } from '../api';
 
 export const addTodoMethod = createAsyncThunk(
   'todo/addTodoMethod',
-  async (data) => {
-    //data => newTodo
+  async (data, thunkApi) => {
     try {
-      // const response = await todoApiMethod.addTodo(data); /// goi toi api
-      // console.log('response add ', response);
+      const response = await todoApiMethod.addTodo(data);
       return data;
     } catch (error) {
-      return error;
+      return thunkApi.rejectWithValue(error.response);
     }
   }
 );
 
 export const editTodoMethod = createAsyncThunk(
   'todo/editTodoMethod',
-  async (data) => {
-    //data => newTodo
+  async (data, thunkApi) => {
     try {
-      // const response = await todoApiMethod.editTodo(data); /// goi toi api
-      // console.log('response add ', response);
+      const response = await todoApiMethod.editTodo(data);
       return data;
     } catch (error) {
-      return error;
+      return thunkApi.rejectWithValue(error.response);
     }
   }
 );
 
 export const deleteTodoMethod = createAsyncThunk(
   'todo/deleteTodoMethod',
-  async (data) => {
-    //data => newTodo
+  async (id, thunkApi) => {
     try {
-      // const response = await todoApiMethod.deleteTodo(data); /// goi toi api
-      // console.log('response add ', response);
-      return data;
+      const response = await todoApiMethod.deleteTodo(id); /// goi toi api 
+      return id;
     } catch (error) {
-      return error;
+      return thunkApi.rejectWithValue(error.response);
+    }
+  }
+);
+
+export const getAllTodoMethod = createAsyncThunk(
+  'todo/getAllTodoMethod',
+  async (_, thunkApi) => {
+    try {
+      const response = await todoApiMethod.getAllTodo();
+      return response;
+    } catch (error) {
+      return thunkApi.rejectWithValue(error.response);
     }
   }
 );

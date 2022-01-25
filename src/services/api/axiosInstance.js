@@ -13,8 +13,9 @@ export const axiosInstance = axios.create({
 });
 
 axiosInstance.interceptors.request.use((request) => {
-  const accessToken = getLocalStorage('token');
+  const accessToken = getLocalStorage('currentId');
   const accessHeader = `Bearer ${accessToken}`;
+  console.log('token', accessHeader);
   if (request.headers) request.headers['Authorization'] = accessHeader;
   return request;
 });

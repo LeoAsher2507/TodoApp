@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { routeList } from '../../../../navigation/routes';
 import { logoutMethod } from '../../../auth/services/authSlice';
-import { deleteTodoMethod } from '../../services/todoThunk';
+import { deleteTodoMethod, getAllTodoMethod } from '../../services/todoThunk';
 import './HomePage.css';
 
 const HomePage = () => {
@@ -19,7 +19,6 @@ const HomePage = () => {
 
   const handleLogout = () => {
     dispatch(logoutMethod());
-    console.log('log out e');
     navigate(routeList.LOGIN);
   };
 
@@ -44,6 +43,10 @@ const HomePage = () => {
   };
 
   const handleIsDoneChange = (e) => {};
+
+  useEffect(() => {
+    dispatch(getAllTodoMethod());
+  }, [dispatch]);
 
   return (
     <div className='home-page'>
@@ -83,8 +86,8 @@ const HomePage = () => {
 
           <Card.Body>
             <ListGroup>
-              {todoList.map((item) => (
-                <ListGroup.Item key={item.id} className='todo-item'>
+              {todoList.map((todo) => (
+                <ListGroup.Item key={todo.id} className='todo-item'>
                   <div className='todo-content'>
                     <div className='is-done'>
                       <input
@@ -92,16 +95,16 @@ const HomePage = () => {
                         name='isDone'
                         id='is-done'
                         onChange={(e) => handleIsDoneChange()}
-                        checked={item.isDone}
+                        checked={todo.isDone}
                       />
                     </div>
-                    <div className='todo-name'>{item.name}</div>
+                    <div className='todo-name'>{todo.name}</div>
                   </div>
                   <div className='action-btn'>
                     <Button
                       className='btn'
                       variant='primary'
-                      onClick={() => handleEdit(item)}>
+                      onClick={() => handleEdit(todo)}>
                       Edit
                     </Button>
                     <Button
@@ -113,7 +116,7 @@ const HomePage = () => {
                     <Button
                       className='btn'
                       variant='primary'
-                      onClick={() => handleDeleteTodo(item.id)}>
+                      onClick={() => handleDeleteTodo(todo.id)}>
                       Delete
                     </Button>
                   </div>

@@ -7,25 +7,28 @@ import {
 import { loginMethod, registerMethod } from './authThunk';
 
 const initialState = {
-  token: '',
+  userId: getLocalStorage('userID'),
   currentId: getLocalStorage('currentId'),
 };
 
-export const authSlice = createSlice({
+const authSlice = createSlice({
   name: 'auth',
   initialState,
   reducers: {
     logoutMethod: (state) => {
       state.currentId = '';
+      state.userId = 0;
+      removeLocalStorage('userId');
       removeLocalStorage('currentId');
     },
   },
   extraReducers: (builder) => {
     builder
       .addCase(loginMethod.fulfilled, (state, action) => {
-        console.log('Login successfully!', action.payload.id);
         state.currentId = action.payload.id;
+        state.userId = action.payload.userId;
         setLocalStorage('currentId', state.currentId);
+        setLocalStorage('userId', state.userId);
       })
       .addCase(loginMethod.rejected, (state, action) => {
         console.log('reject');
