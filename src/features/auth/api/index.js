@@ -18,5 +18,11 @@ export const AuthApiMethod = {
   getUserInfo: (id) => {
     const url = `Accounts/${id}?access_token=${getLocalStorage('currentId')}`;
     return axiosInstance.get(url)
+  },
+  
+  changePassword: (data) => {
+    const url = `Accounts/change-password?access_token=${getLocalStorage('currentId')}`;
+    return axiosInstance.post(url, data)
   }
+
 }

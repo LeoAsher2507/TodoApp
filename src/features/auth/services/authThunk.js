@@ -33,3 +33,15 @@ export const getUserInfoMethod = createAsyncThunk(
     } catch(err) {}
   }
 );
+
+export const changePasswordMethod = createAsyncThunk(
+  `auth/changePasswordMethod`,
+  async (data) => {
+    try {
+      const response = await AuthApiMethod.changePassword(data);
+      console.log('change password', response);
+      return response.data;
+    } catch (err) {}
+  }
+);
+

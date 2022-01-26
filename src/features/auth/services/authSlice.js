@@ -4,7 +4,7 @@ import {
   removeLocalStorage,
   setLocalStorage,
 } from '../../../services/localStorage';
-import { getUserInfoMethod, loginMethod, registerMethod } from './authThunk';
+import { getUserInfoMethod, loginMethod, registerMethod, changePasswordMethod } from './authThunk';
 
 const initialState = {
   userId: getLocalStorage('userId'),
@@ -54,6 +54,15 @@ const authSlice = createSlice({
       .addCase(getUserInfoMethod.fulfilled, (state, action) => {
         state.userInfo = {...action.payload}
         // console.log(action.payload)
+      })
+      .addCase(getUserInfoMethod.rejected, (state, action) => {
+        console.log('reject get user info');
+      })
+      .addCase(changePasswordMethod.fulfilled, (state, action) => {
+        console.log('Change password successfully');
+      })
+      .addCase(changePasswordMethod.rejected, (state, action) => {
+        console.log('reject change password');
       })
   },
 });

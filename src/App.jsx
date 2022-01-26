@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.css';
 import LoginPage from './features/auth/pages/loginPage';
 import RegisterPage from './features/auth/pages/registerPage';
+import ChangePasswordPage from './features/auth/pages/changePassword';
 import HomePage from './features/todo/pages/homePage';
 import EditTodoPage from './features/todo/pages/editTodo';
 import PrivateRoute from './navigation/PrivateRoute';
@@ -22,6 +23,7 @@ function App() {
             <Route path={routeList.CREATE_TODO} element={<CreateTodoPage />}></Route>
             <Route path={routeList.DETAIL_TODO} element={<DetailTodoPage />}></Route>
             <Route path={routeList.MY_PROFILE} element={<UserProfilePage />}></Route>
+            <Route path={routeList.RECOVER_PASSWORD} element={<ChangePasswordPage />}></Route>
           </Route>
           <Route path={routeList.LOGIN} element={<LoginPage />} />
           <Route path={routeList.REGISTER} element={<RegisterPage />} /> 

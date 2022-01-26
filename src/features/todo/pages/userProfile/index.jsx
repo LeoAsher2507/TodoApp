@@ -22,6 +22,10 @@ const UserProfilePage = () => {
     navigate(routeList.HOME)
   }
 
+  const handleChangePassword = () => {
+    navigate(routeList.RECOVER_PASSWORD)
+  }
+
   return (
     <div className='profile-page'>
       <Card className='user-info'>
@@ -57,8 +61,8 @@ const UserProfilePage = () => {
               <Button
                 className='logout-btn'
                 variant='primary'
-                onClick={() => handleGoToHome()}>
-                Edit Password
+                onClick={() => handleChangePassword()}>
+                Change Password
               </Button>
           </Card.Footer>
         </Card>
