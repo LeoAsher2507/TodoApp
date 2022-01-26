@@ -2,12 +2,11 @@ import React, { useEffect, useState } from 'react';
 import { Button, Card, Form } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
-import { routeList } from '../../../../navigation/routes';
 import NoteItem from '../../components/NoteItem';
 import {
   addNoteMethod,
   getAllNoteMethod,
-  getOneTodoMethod,
+  getOneTodoMethod
 } from '../../services/todoThunk';
 import './DetailTodo.css';
 
@@ -18,8 +17,8 @@ const DetailTodoPage = () => {
   const [newNote, setNewNote] = useState('');
   const navigate = useNavigate();
 
-  const handleGoToHome = () => {
-    navigate(routeList.HOME);
+  const handleBack = () => {
+    navigate(-1);
   };
 
   const handleAddNote = () => {
@@ -37,7 +36,7 @@ const DetailTodoPage = () => {
   }, [id, dispatch]);
 
   return (
-    <div className='detail-todo-page'>
+    <div className='container-wrap'>
       <Card>
         <Card.Title>Detail Todo</Card.Title>
         <Card.Body>
@@ -64,7 +63,7 @@ const DetailTodoPage = () => {
           </div>
         </Card.Body>
         <Card.Footer className='action-wrap'>
-          <Button onClick={handleGoToHome}>Go to Home</Button>
+          <Button onClick={handleBack}>Back</Button>
           <Button onClick={handleAddNote}>Add Note</Button>
           <Form.Control
             value={newNote}

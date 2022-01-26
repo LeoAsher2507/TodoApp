@@ -44,7 +44,7 @@ const HomePage = () => {
   };
 
   const handleIsDoneChange = (e) => {};
-  const { userId, userInfo } = useSelector((state) => state.auth); 
+  const { userId, userInfo } = useSelector((state) => state.auth);
 
   useEffect(() => {
     dispatch(getAllTodoMethod());
@@ -54,37 +54,36 @@ const HomePage = () => {
   return (
     <div className='home-page'>
       <div className='container-wrap'>
-        <Card className='user-info'>
+        {/* <Card className='user-info'>
           <Card.Title className='card-title'>
-            <div className='title'>User Information</div>
-            <Button
-              className='logout-btn'
-              variant='primary'
-              onClick={() => handleLogout()}>
-              Logout
-            </Button>
-          </Card.Title>
-
-          <Card.Body>
-            <div className='user-info-body'>
-              <div className='user-name'>Name: Ahihi</div>
-
-              <Button variant='primary' onClick={() => handleEditProfile()}>
-                Profile
-              </Button>
+            <div className='title'>User: {userInfo.name}</div>
+            <div className='action-wrap'>
+              
             </div>
-          </Card.Body>
-        </Card>
+          </Card.Title>
+        </Card> */}
 
         <Card className='todo-list'>
           <Card.Title className='card-title'>
             <div className='title'>Todo App with Redux</div>
-            <Button
-              className='btn'
-              variant='primary'
-              onClick={() => handleAddTodo()}>
-              Add Todo
-            </Button>
+
+            <div className='action-wrap'>
+              <Button variant='primary' onClick={() => handleEditProfile()}>
+                Profile
+              </Button>
+              <Button
+                className='logout-btn'
+                variant='primary'
+                onClick={() => handleLogout()}>
+                Logout
+              </Button>
+              <Button
+                className='btn'
+                variant='primary'
+                onClick={() => handleAddTodo()}>
+                Add Todo
+              </Button>
+            </div>
           </Card.Title>
 
           <Card.Body>
@@ -103,7 +102,7 @@ const HomePage = () => {
                     </div>
                     <div className='todo-name'>{todo.name}</div>
                   </div>
-                  <div className='action-btn'>
+                  <div className='action-wrap'>
                     <Button
                       className='btn'
                       variant='primary'
@@ -127,6 +126,10 @@ const HomePage = () => {
               ))}
             </ListGroup>
           </Card.Body>
+
+          {/* <Card.Footer className='d-flex justify-content-end'>
+            
+          </Card.Footer> */}
         </Card>
       </div>
     </div>

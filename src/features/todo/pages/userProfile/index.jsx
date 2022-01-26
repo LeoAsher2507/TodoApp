@@ -1,73 +1,131 @@
-import React, { useEffect } from 'react';
-import { Card, Button } from 'react-bootstrap';
-import { useDispatch } from 'react-redux';
-import { useSelector } from 'react-redux';
+import React, { useEffect, useState } from 'react';
+import { Button, Card, Form } from 'react-bootstrap';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { routeList } from '../../../../navigation/routes';
-import { getUserInfoMethod } from '../../../auth/services/authThunk';
-import './UserProfile.css'
-
+import {
+  editUserMethod,
+  getUserInfoMethod,
+} from '../../../auth/services/authThunk';
+import InfoItem from '../../components/InfoItem';
+import './UserProfile.css';
 
 const UserProfilePage = () => {
   const dispatch = useDispatch();
-  const {userId, userInfo} = useSelector((state) => state.auth);
+  const { userId, userInfo } = useSelector((state) => state.auth);
+  const [isEditable, setIsEditable] = useState(false);
 
   useEffect(() => {
     dispatch(getUserInfoMethod(userId));
-  }, [dispatch]);
+    setName(userInfo.name);
+    setEmail(userInfo.email);
+  }, [dispatch, userId, userInfo.name, userInfo.email]);
 
   const navigate = useNavigate();
 
-  const handleGoToHome = () => {
-    navigate(routeList.HOME)
-  }
+  const handleBack = () => {
+    isEditable ? setIsEditable(false) : navigate(-1);
+  };
+
+  const handleEditClick = () => {
+    isEditable ? handleEditSave() : setIsEditable(true);
+  };
+
+  const handleEditSave = () => {
+    dispatch(
+      editUserMethod({
+        name,
+        email,
+        username: userInfo.username,
+        isAdmin: userInfo.isAdmin,
+        emailVerified: userInfo.emailVerified,
+        id: userInfo.id,
+        realm: userInfo.realm,
+        createdAt: userInfo.createdAt,
+        updatedAt: userInfo.updatedAt,
+      })
+    );
+  };
 
   const handleChangePassword = () => {
-    navigate(routeList.CHANGE_PASSWORD)
-  }
+    navigate(routeList.CHANGE_PASSWORD);
+  };
+
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
 
   return (
-    <div className='profile-page'>
+    <div className='profile-page container-wrap'>
       <Card className='user-info'>
-          <Card.Title className='card-title'>
-            <div className='title'>User Information</div>
-            
-          </Card.Title>
+        <Card.Title className='card-title'>
+          <div className='title'>User Information</div>
+        </Card.Title>
 
-          <Card.Body>
-            <div className='user-info-body'>
-              <div className='user-name'>Name: {userInfo.name}</div>
-              <div className='user-name'>Email: {userInfo.email}</div>
-              <div className='user-name'>Username: {userInfo.username}</div>
-              <div className='user-name'>Is Admin: {userInfo.isAdmin ? 'True': 'False'}</div>
-              <div className='user-name'>Email Verified: {userInfo.emailVerified ? 'True': 'False'}</div>
-              
-              
+        <Card.Body>
+          <div className='user-info-body'>
+            {/* <div className='user-name'>Name: {userInfo.name}</div>
+            <div className='user-name'>Email: {userInfo.email}</div>
+            <div className='user-name'>Username: {userInfo.username}</div>
+            <div className='user-name'>
+              Is Admin: {userInfo.isAdmin ? 'True' : 'False'}
             </div>
-          </Card.Body>
-          <Card.Footer>
-            <Button
-                className='logout-btn'
-                variant='primary'
-                onClick={() => handleGoToHome()}>
-                Go to Home
-              </Button>
-              <Button
-                className='logout-btn'
-                variant='primary'
-                onClick={() => handleGoToHome()}>
-                Edit Profile
-              </Button>
-              <Button
-                className='logout-btn'
-                variant='primary'
-                onClick={() => handleChangePassword()}>
-                Change Password
-              </Button>
-          </Card.Footer>
-        </Card>
+            <div className='user-name'>
+              Email Verified: {userInfo.emailVerified ? 'True' : 'False'}
+            </div> */}
+            <Form>
+              <InfoItem
+                editable={isEditable}
+                infoLabel='Name'
+                infoValue={name}
+                setInfo={setName}
+              />
+              <InfoItem
+                editable={isEditable}
+                infoLabel='Email'
+                infoValue={email}
+                setInfo={setEmail}
+              />
+              <InfoItem
+                editable={false}
+                infoLabel='Username'
+                infoValue={userInfo.username}
+              />
+              <InfoItem
+                editable={false}
+                infoLabel='Is admin'
+                infoValue={userInfo.isAdmin ? 'True' : 'False'}
+              />
+              <InfoItem
+                editable={false}
+                infoLabel='Email verified'
+                infoValue={userId.emailVerified ? 'True' : 'False'}
+              />
+            </Form>
+          </div>
+        </Card.Body>
+        <Card.Footer className='action-wrap'>
+          <Button
+            className='logout-btn'
+            variant='primary'
+            onClick={() => handleBack()}>
+            {isEditable ? 'Cancel' : 'Back'}
+          </Button>
+          <Button
+            className='logout-btn'
+            variant='primary'
+            onClick={() => handleEditClick()}>
+            {isEditable ? 'Save' : 'Edit Profile'}
+          </Button>
+          <Button
+            className='logout-btn'
+            variant='primary'
+            onClick={() => handleChangePassword()}>
+            Change Password
+          </Button>
+        </Card.Footer>
+      </Card>
     </div>
-  )
+  );
 };
 
 export default UserProfilePage;

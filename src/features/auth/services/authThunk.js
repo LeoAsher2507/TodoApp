@@ -31,6 +31,17 @@ export const getUserInfoMethod = createAsyncThunk(
   }
 );
 
+export const editUserMethod = createAsyncThunk(
+  `auth/editUserMethod`,
+  async (data) => {
+    try {
+      const response = await AuthApiMethod.editUser(data);
+      console.log('first req', response);
+      return response.data;
+    } catch (err) {}
+  }
+);
+
 export const changePasswordMethod = createAsyncThunk(
   `auth/changePasswordMethod`,
   async (data) => {
@@ -41,4 +52,3 @@ export const changePasswordMethod = createAsyncThunk(
     } catch (err) {}
   }
 );
-

@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { Button, Card } from 'react-bootstrap';
 import { useDispatch } from 'react-redux';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { routeList } from '../../../../navigation/routes';
 import { getLocalStorage } from '../../../../services/localStorage';
 import CreateEditTodoForm from '../../components/CreateEditTodoForm';
 import { editTodoMethod } from '../../services/todoThunk';
@@ -22,11 +21,10 @@ const EditTodoPage = () => {
       id: state.id,
     };
     dispatch(editTodoMethod(editedTodo));
-    navigate(routeList.HOME);
   };
 
-  const handleBackToHome = () => {
-    navigate(routeList.HOME);
+  const handleBack = () => {
+    navigate(-1);
   };
 
   return (
@@ -38,8 +36,8 @@ const EditTodoPage = () => {
           <CreateEditTodoForm todoName={todoName} setTodoName={setTodoName} />
         </Card.Body>
 
-        <Card.Footer>
-          <Button onClick={handleBackToHome}>Back to Home</Button>
+        <Card.Footer className='action-wrap'>
+          <Button onClick={handleBack}>Back</Button>
           <Button onClick={handleSubmit}>Save</Button>
         </Card.Footer>
       </Card>

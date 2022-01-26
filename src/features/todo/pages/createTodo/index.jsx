@@ -26,8 +26,8 @@ const CreateTodoPage = () => {
     }
   };
 
-  const handleBackToHome = () => {
-    navigate(routeList.HOME);
+  const handleBack = () => {
+    navigate(-1);
   };
 
   return (
@@ -39,8 +39,8 @@ const CreateTodoPage = () => {
           <CreateEditTodoForm todoName={todoName} setTodoName={setTodoName} />
         </Card.Body>
 
-        <Card.Footer>
-          <Button onClick={handleBackToHome}>Back to Home</Button>
+        <Card.Footer className='action-wrap'>
+          <Button onClick={handleBack}>Back</Button>
           <Button onClick={handleSubmit}>Save</Button>
         </Card.Footer>
       </Card>

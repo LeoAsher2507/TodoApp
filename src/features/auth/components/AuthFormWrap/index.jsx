@@ -13,7 +13,7 @@ const AuthFormWrap = (props) => {
         <Form onSubmit={(e) => handleSubmit(e)}>
           {children}
 
-          <div className='action'>
+          <div className='action-wrap'>
             <Button variant='primary' onClick={(e) => handleSubmit(e)}>
               {cardTitle}
             </Button>

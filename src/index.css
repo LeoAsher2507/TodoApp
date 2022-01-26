@@ -6,5 +6,26 @@
 }
 
 body {
-  background: linear-gradient(to right, rgb(248, 247, 180) , rgb(241, 138, 245) );
+  background: linear-gradient(to right, rgb(248, 247, 180), rgb(241, 138, 245));
+}
+
+.card-title {
+  padding: 20px 20px 0;
+  font-size: 24px !important;
+  font-weight: bolder !important;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.container-wrap {
+  width: 700px;
+  max-width: 96vw;
+  margin: 50px auto;
+}
+
+.action-wrap {
+  display: flex;
+  justify-content: flex-end;
 }

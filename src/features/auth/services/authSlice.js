@@ -4,7 +4,7 @@ import {
   removeLocalStorage,
   setLocalStorage,
 } from '../../../services/localStorage';
-import { getUserInfoMethod, loginMethod, registerMethod, changePasswordMethod } from './authThunk';
+import { getUserInfoMethod, loginMethod, registerMethod } from './authThunk';
 
 const initialState = {
   userId: getLocalStorage('userId'),
