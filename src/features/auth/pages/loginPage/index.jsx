@@ -10,7 +10,7 @@ const LoginPage = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const [username, setUsername] = useState('test');
+  const [username, setUsername] = useState('thanhlong070');
   const [password, setPassword] = useState('test1234');
 
   const handleLogIn = (e) => {
@@ -28,7 +28,7 @@ const LoginPage = () => {
   const handlePasswordOnChange = (e) => {
     setPassword(e.target.value);
   };
-  const currentId = useSelector(state => state.auth.currentId);
+  const currentId = useSelector((state) => state.auth.currentId);
 
   useEffect(() => {
     if (currentId) {
@@ -38,34 +38,34 @@ const LoginPage = () => {
 
   return (
     <div className='login-page'>
-      <AuthFormWrap cardTitle='Đăng nhập' handleSubmit={ handleLogIn }>
+      <AuthFormWrap cardTitle='Đăng nhập' handleSubmit={handleLogIn}>
         <Form.Group className='mb-3' controlId='username'>
           <Form.Label>User Name</Form.Label>
           <Form.Control
-            required={ true }
+            required={true}
             type='name'
             placeholder='Enter username'
-            value={ username }
-            onChange={ handleUserOnChange }
+            value={username}
+            onChange={handleUserOnChange}
           />
         </Form.Group>
 
         <Form.Group className='mb-3' controlId='password'>
           <Form.Label>Password</Form.Label>
           <Form.Control
-            required={ true }
+            required={true}
             type='password'
             placeholder='Password'
-            value={ password }
-            onChange={ handlePasswordOnChange }
+            value={password}
+            onChange={handlePasswordOnChange}
           />
         </Form.Group>
 
         <div className='forget-password'>
-          <Link to={ routeList.RECOVER_PASSWORD }> Quên mật khẩu </Link>
+          <Link to={routeList.RECOVER_PASSWORD}> Quên mật khẩu </Link>
         </div>
         <div className='register'>
-          <Link to={ routeList.REGISTER }> Đăng ký </Link>
+          <Link to={routeList.REGISTER}> Đăng ký </Link>
         </div>
       </AuthFormWrap>
     </div>

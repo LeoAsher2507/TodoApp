@@ -21,7 +21,6 @@ const EditTodoPage = () => {
       userId,
       id: state.id,
     };
-    console.log('tetsssss', editedTodo);
     dispatch(editTodoMethod(editedTodo));
     navigate(routeList.HOME);
   };

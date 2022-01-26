@@ -21,8 +21,6 @@ const RegisterPage = () => {
     };
 
     dispatch(registerMethod(data));
-
-    console.log('regis', data);
   };
 
   const [name, setName] = useState('');
