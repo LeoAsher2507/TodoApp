@@ -19,14 +19,21 @@ function App() {
         <Routes>
           <Route path={routeList.HOME} element={<PrivateRoute />}>
             <Route path={routeList.HOME} element={<HomePage />}></Route>
-            <Route path={routeList.EDIT_TODO} element={<EditTodoPage />}></Route>
-            <Route path={routeList.CREATE_TODO} element={<CreateTodoPage />}></Route>
-            <Route path={routeList.DETAIL_TODO} element={<DetailTodoPage />}></Route>
-            <Route path={routeList.MY_PROFILE} element={<UserProfilePage />}></Route>
-            <Route path={routeList.RECOVER_PASSWORD} element={<ChangePasswordPage />}></Route>
+            <Route
+              path={routeList.EDIT_TODO}
+              element={<EditTodoPage />}></Route>
+            <Route
+              path={routeList.CREATE_TODO}
+              element={<CreateTodoPage />}></Route>
+            <Route
+              path={`${routeList.DETAIL_TODO}-:id`}
+              element={<DetailTodoPage />}></Route>
+            <Route
+              path={routeList.MY_PROFILE}
+              element={<UserProfilePage />}></Route>
           </Route>
           <Route path={routeList.LOGIN} element={<LoginPage />} />
-          <Route path={routeList.REGISTER} element={<RegisterPage />} /> 
+          <Route path={routeList.REGISTER} element={<RegisterPage />} />
         </Routes>
       </BrowserRouter>
     </div>

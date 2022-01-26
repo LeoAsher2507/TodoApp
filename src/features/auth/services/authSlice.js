@@ -10,16 +10,16 @@ const initialState = {
   userId: getLocalStorage('userId'),
   currentId: getLocalStorage('currentId'),
   userInfo: {
-    createdAt: "",
-    email: "",
+    createdAt: '',
+    email: '',
     emailVerified: null,
     id: 0,
     isAdmin: 0,
-    name: "",
+    name: '',
     realm: null,
-    updatedAt: "",
-    username: ""
-  }
+    updatedAt: '',
+    username: '',
+  },
 };
 
 const authSlice = createSlice({
@@ -41,29 +41,13 @@ const authSlice = createSlice({
         setLocalStorage('currentId', state.currentId);
         setLocalStorage('userId', state.userId);
       })
-      .addCase(loginMethod.rejected, (state, action) => {
-        console.log('reject');
-      })
+      .addCase(loginMethod.rejected, (state, action) => {})
 
-      .addCase(registerMethod.fulfilled, (state, action) => {
-        console.log('success1');
-      })
-      .addCase(registerMethod.rejected, (state, action) => {
-        console.log('reject1');
-      })
+      .addCase(registerMethod.fulfilled, (state, action) => {})
+      .addCase(registerMethod.rejected, (state, action) => {})
       .addCase(getUserInfoMethod.fulfilled, (state, action) => {
-        state.userInfo = {...action.payload}
-        // console.log(action.payload)
-      })
-      .addCase(getUserInfoMethod.rejected, (state, action) => {
-        console.log('reject get user info');
-      })
-      .addCase(changePasswordMethod.fulfilled, (state, action) => {
-        console.log('Change password successfully');
-      })
-      .addCase(changePasswordMethod.rejected, (state, action) => {
-        console.log('reject change password');
-      })
+        state.userInfo = { ...action.payload };
+      });
   },
 });
 

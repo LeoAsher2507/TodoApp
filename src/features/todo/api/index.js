@@ -18,9 +18,45 @@ export const todoApiMethod = {
     );
   },
 
+  getOneTodo: (id) => {
+    return axiosInstance.get(
+      `todos/${id}?access_token=${getLocalStorage('currentId')}`
+    );
+  },
+
   deleteTodo: (id) => {
     return axiosInstance.delete(
       `todos/${id}?access_token=${getLocalStorage('currentId')}`
+    );
+  },
+
+  getAllNote: () => {
+    const url = '/notes';
+    return axiosInstance.get(
+      `${url}?access_token=${getLocalStorage('currentId')}`
+    );
+  },
+
+  editNote: (data) => {
+    const url = '/notes';
+    console.log('dataaaaa', data);
+    return axiosInstance.put(
+      `${url}?access_token=${getLocalStorage('currentId')}`,
+      data
+    );
+  },
+
+  deleteNote: (id) => {
+    return axiosInstance.delete(
+      `notes/${id}?access_token=${getLocalStorage('currentId')}`
+    );
+  },
+
+  addNote: (data) => {
+    const url = '/notes';
+    return axiosInstance.post(
+      `${url}?access_token=${getLocalStorage('currentId')}`,
+      data
     );
   },
 };

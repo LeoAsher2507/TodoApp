@@ -31,8 +31,8 @@ const HomePage = () => {
     navigate(routeList.CREATE_TODO);
   };
 
-  const handleView = () => {
-    navigate(routeList.DETAIL_TODO);
+  const handleView = (id) => {
+    navigate(`${routeList.DETAIL_TODO}-${id}`);
   };
 
   const handleEditProfile = () => {
@@ -44,8 +44,7 @@ const HomePage = () => {
   };
 
   const handleIsDoneChange = (e) => {};
-  const {userId, userInfo} = useSelector((state) => state.auth);
-  console.log('userInfo1',userInfo);
+  const { userId, userInfo } = useSelector((state) => state.auth); 
 
   useEffect(() => {
     dispatch(getAllTodoMethod());
@@ -114,7 +113,7 @@ const HomePage = () => {
                     <Button
                       className='btn'
                       variant='primary'
-                      onClick={() => handleView()}>
+                      onClick={() => handleView(todo.id)}>
                       View
                     </Button>
                     <Button

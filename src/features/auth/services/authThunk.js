@@ -6,7 +6,6 @@ export const loginMethod = createAsyncThunk(
   async (data) => {
     try {
       const response = await AuthApiMethod.login(data);
-      console.log('test', response);
       return response.data;
     } catch (err) {}
   }
@@ -17,7 +16,6 @@ export const registerMethod = createAsyncThunk(
   async (data) => {
     try {
       const response = await AuthApiMethod.register(data);
-      console.log('test', response);
       return response.data;
     } catch (err) {}
   }
@@ -26,11 +24,10 @@ export const registerMethod = createAsyncThunk(
 export const getUserInfoMethod = createAsyncThunk(
   `auth/getUserInfoMethod`,
   async (id) => {
-    try{
+    try {
       const response = await AuthApiMethod.getUserInfo(id);
-      console.log('userInfo', response);
       return response.data;
-    } catch(err) {}
+    } catch (err) {}
   }
 );
 
