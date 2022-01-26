@@ -23,7 +23,7 @@ const UserProfilePage = () => {
   }
 
   const handleChangePassword = () => {
-    navigate(routeList.RECOVER_PASSWORD)
+    navigate(routeList.CHANGE_PASSWORD)
   }
 
   return (

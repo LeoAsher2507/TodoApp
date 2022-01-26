@@ -9,12 +9,12 @@ export const AuthApiMethod = {
   },
 
   register: (data) => { 
-    const url = `/Accounts/replaceOrCreate`;
+    const url = `/Accounts`;
     return axiosInstance.post(url, data)
   },
 
   getUserInfo: (id) => {
-    const url = `Accounts/${1}?access_token=${getLocalStorage('currentId')}`;
+    const url = `Accounts/${id}?access_token=${getLocalStorage('currentId')}`;
     return axiosInstance.get(url)
   },
   

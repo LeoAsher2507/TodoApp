@@ -28,6 +28,9 @@ const ChangePasswordPage = () => {
     navigate(routeList.HOME);
   }
 
+  const handleBack = () => {
+    navigate(-1)
+  }
 
   return (
     <div className='container-wrap'>
@@ -60,12 +63,19 @@ const ChangePasswordPage = () => {
             </Form.Group>
           </Card.Body>
           <Card.Footer>
+          <Button
+              className='btn'
+              variant='primary'
+              onClick={() => handleBack()}>
+              Back
+            </Button>
             <Button
               className='btn'
               variant='primary'
               onClick={() => handleChangePassword()}>
               Save
             </Button>
+            
           </Card.Footer>
         </Card>
     </div>

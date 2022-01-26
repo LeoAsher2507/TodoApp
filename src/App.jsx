@@ -31,6 +31,9 @@ function App() {
             <Route
               path={routeList.MY_PROFILE}
               element={<UserProfilePage />}></Route>
+            <Route
+              path={routeList.CHANGE_PASSWORD}
+              element={<ChangePasswordPage />}></Route>
           </Route>
           <Route path={routeList.LOGIN} element={<LoginPage />} />
           <Route path={routeList.REGISTER} element={<RegisterPage />} />

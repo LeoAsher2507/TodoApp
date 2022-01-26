@@ -7,4 +7,5 @@ export const routeList = {
   CREATE_TODO: '/create-todo',
   EDIT_TODO: '/edit-todo',
   DETAIL_TODO: '/detail-todo',
+  CHANGE_PASSWORD: '/change-password',
 };
