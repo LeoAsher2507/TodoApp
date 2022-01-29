@@ -29,13 +29,13 @@ const todoSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(addTodoMethod.fulfilled, (state, action) => {
-        // state.todoList = [action.payload, ...state.todoList]; //destructuring
+        state.todoList = [...state.todoList, action.payload]; //destructuring
       })
       .addCase(editTodoMethod.fulfilled, (state, action) => {
-        // const index = state.todoList.findIndex(
-        //   (todo) => todo.id === action.payload.id
-        // );
-        // state.todoList[index] = action.payload;
+        const index = state.todoList.findIndex(
+          (todo) => todo.id === action.payload.id
+        );
+        state.todoList[index] = action.payload;
       })
       .addCase(deleteTodoMethod.fulfilled, (state, action) => {
         state.todoList = state.todoList.filter(

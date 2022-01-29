@@ -5,7 +5,11 @@ import { useNavigate } from 'react-router-dom';
 import { routeList } from '../../../../navigation/routes';
 import { logoutMethod } from '../../../auth/services/authSlice';
 import { getUserInfoMethod } from '../../../auth/services/authThunk';
-import { deleteTodoMethod, getAllTodoMethod } from '../../services/todoThunk';
+import {
+  deleteTodoMethod,
+  editTodoMethod,
+  getAllTodoMethod,
+} from '../../services/todoThunk';
 import './HomePage.css';
 
 const HomePage = () => {
@@ -43,8 +47,13 @@ const HomePage = () => {
     dispatch(deleteTodoMethod(id));
   };
 
-  const handleIsDoneChange = (e) => {};
-  const { userId, userInfo } = useSelector((state) => state.auth);
+  const handleIsDoneChange = (e, todo) => {
+    console.log('first', e.target.checked, todo);
+    const newTodo = { ...todo, isDone: e.target.checked ? 1 : 0 };
+    dispatch(editTodoMethod(newTodo));
+  };
+
+  const { userId } = useSelector((state) => state.auth);
 
   useEffect(() => {
     dispatch(getAllTodoMethod());
@@ -54,15 +63,6 @@ const HomePage = () => {
   return (
     <div className='home-page'>
       <div className='container-wrap'>
-        {/* <Card className='user-info'>
-          <Card.Title className='card-title'>
-            <div className='title'>User: {userInfo.name}</div>
-            <div className='action-wrap'>
-              
-            </div>
-          </Card.Title>
-        </Card> */}
-
         <Card className='todo-list'>
           <Card.Title className='card-title'>
             <div className='title'>Todo App with Redux</div>
@@ -96,7 +96,7 @@ const HomePage = () => {
                         type='checkbox'
                         name='isDone'
                         id='is-done'
-                        onChange={(e) => handleIsDoneChange()}
+                        onChange={(e) => handleIsDoneChange(e, todo)}
                         checked={todo.isDone}
                       />
                     </div>

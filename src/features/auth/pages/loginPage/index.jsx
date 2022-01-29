@@ -10,7 +10,7 @@ const LoginPage = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const [username, setUsername] = useState('thanhlong070');
+  const [username, setUsername] = useState('admin');
   const [password, setPassword] = useState('test1234');
 
   const handleLogIn = (e) => {

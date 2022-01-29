@@ -39,7 +39,6 @@ export const todoApiMethod = {
 
   editNote: (data) => {
     const url = '/notes';
-    console.log('dataaaaa', data);
     return axiosInstance.put(
       `${url}?access_token=${getLocalStorage('currentId')}`,
       data
